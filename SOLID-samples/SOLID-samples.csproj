@@ -5,8 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="2 - O\Solution\" />
-    <Folder Include="2 - O\Problem\" />
     <Folder Include="3 - L\" />
     <Folder Include="4 - I\" />
     <Folder Include="5 - D\" />

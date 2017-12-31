@@ -2,10 +2,6 @@
 using System.Data.SqlClient;
 using System.Net.Mail;
 
-/// <summary>
-/// SRP - Single Responsability Principle - Everything in the same class, causing problems to maintain and bad for code reusing
-/// </summary>
-
 namespace SOLID.samples.SRP.Problem
 {
     public class Client
