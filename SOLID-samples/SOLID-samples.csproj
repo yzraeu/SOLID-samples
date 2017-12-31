@@ -4,4 +4,16 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="1 - S\Solution\" />
+    <Folder Include="2 - O\" />
+    <Folder Include="3 - L\" />
+    <Folder Include="4 - I\" />
+    <Folder Include="5 - D\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.50.4" />
+  </ItemGroup>
+
 </Project>
