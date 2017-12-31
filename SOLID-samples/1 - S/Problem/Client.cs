@@ -1,13 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Net.Mail;
-using System.Text;
+
+/// <summary>
+/// SRP - Single Responsability Principle - Everything in the same class, causing problems to maintain and bad for code reusing
+/// </summary>
 
 namespace SOLID.samples.SRP.Problem
 {
     public class Client
     {
+        // Model structure
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
@@ -18,15 +21,14 @@ namespace SOLID.samples.SRP.Problem
             // Validations
             if (string.IsNullOrEmpty(this.Name)) return (false, "Name is invalid");
 
-            if (this.Email.Contains("@")) return (false, "Email is invalid");
+            if (!this.Email.Contains("@")) return (false, "Email is invalid");
 
-            if(DateOfBirth > DateTime.Now) return (false, "Date of Birth is invalid");
+            if (DateOfBirth > DateTime.Now) return (false, "Date of Birth is invalid");
 
             // Persist Data
             using (var cn = new SqlConnection("cnString"))
             {
                 var cmd = new SqlCommand("INSERT INTO clients(Name, Email, DateOfBirth) VALUES(@Name, @Email, @DateOfBirth)", cn);
-
 
                 cmd.Parameters.AddWithValue("Name", this.Name);
                 cmd.Parameters.AddWithValue("Email", this.Email);
@@ -35,6 +37,7 @@ namespace SOLID.samples.SRP.Problem
                 cmd.ExecuteNonQuery();
             }
 
+            // Send e-mail
             var mail = new MailMessage("no-reply@system.net", this.Email);
             var smtpClient = new SmtpClient
             {
@@ -49,6 +52,5 @@ namespace SOLID.samples.SRP.Problem
 
             return (true, string.Empty);
         }
-
     }
 }
